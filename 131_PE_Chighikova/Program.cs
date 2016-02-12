@@ -39,6 +39,7 @@ namespace _131_PE_Chighikova
                     {
                         if (v == 10000)
                         {
+
                             z = 500*2;
                         }
 

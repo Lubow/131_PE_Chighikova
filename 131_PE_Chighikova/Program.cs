@@ -21,6 +21,10 @@ namespace _131_PE_Chighikova
             {
                 total = ((result - 10000) / 100) * 10 + 500;
             }
+                if (result > 100000)
+            {
+                    total = result / 100 * 15;
+            }
             else
             {
                 total = totalMin;

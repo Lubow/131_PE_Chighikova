@@ -12,44 +12,74 @@ namespace _131_PE_Chighikova
         {
             int totalMin = 300;
             int total;
-
             if (result == 10000)
             {
                 total = 500;
-            }
-            if (result > 10000)
+            } else if (result > 10000)
             {
                 total = ((result - 10000) / 100) * 10 + 500;
-            }
-                if (result > 100000)
+            } else if (result > 100000)
             {
-                    total = result / 100 * 15;
+                total = result / 100 * 15;
             }
             else
             {
                 total = totalMin;
             }
-
             return isOverride ? 2 * total : total;
+        }
+
+        static int[] GetDaysFromConsole()
+        {
+            Console.Write("Введете отработанные дни: ");
+            int weekSize = Convert.ToInt32(Console.ReadLine());
+            int[] days = new int[weekSize];
+
+            for (int i = 0; i < weekSize; i++)
+            {
+                Console.Write("Введете размер дневной выручки: ");
+                days[i] = Convert.ToInt32(Console.ReadLine());
+            }
+
+            return days;
         }
 
         static void Main(string[] args)
         {
             int total = 0;
+            int[] days = null;
+            ConsoleKeyInfo mode;
 
-            Console.Write("Введете отработанные дни: ");
-            int dni = Convert.ToInt32(Console.ReadLine());
-
-            for (int day = 1; day <= dni; day++)
+            while(days == null)
             {
-                Console.Write("Введете размер дневной выручки: ");
-                int dayResult = Convert.ToInt32(Console.ReadLine());
-                int dayPay = TotalDay(dayResult, day > 4);
+                Console.WriteLine("1 - чтение из файла, 2 - кучной ввод");
+               
+                mode = Console.ReadKey(true);
+
+                switch(mode.Key){
+                    case ConsoleKey.D1:
+
+                        //days = 
+
+                        break;
+                    case ConsoleKey.D2:
+
+                        days = GetDaysFromConsole();
+
+                        break;
+                }
+
+            } 
+         
+            //Console.WriteLine("Введите название файла");
+            //string file = Console.ReadLine();
+            //string q = 
+            for (int i = 0; i < days.Length; i++)
+            {
+                int dayPay = TotalDay(days[i], i > 4);
                 total += dayPay;
-
-                Console.WriteLine("День {0}: {1} руб.", day, dayPay);
+                Console.WriteLine("День {0}: {1} руб.", i, dayPay);
             }
-
             Console.WriteLine("Выручка за неделю: {0} руб.", total);
             Console.ReadKey();
         }

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace _131_PE_Chighikova
+using StreamReader reider = new StreamReader("Zarplata.txt")
+namespace ConsoleApplication1
 {
+    
     class Program
     {
         static int TotalDay(int result, bool isOverride)//рассчет заработной платы
@@ -62,7 +62,29 @@ namespace _131_PE_Chighikova
                 switch (mode.Key)
                 {
                     case ConsoleKey.D1:
-                        ReadFile();//чтение из файла(не работает)
+              
+                
+                {
+                    string line;
+    int i;
+    List<List<string>> resultList = new List<List<string>>();
+    while (null != (line = reader.ReadLine()))
+    {
+        string[] array = line.Split(',');
+        if (resultList.Count != array.Length)
+        {
+            for (i = 0; i < array.Length; i++)
+            {
+                resultList.Add(new List<string>());
+            }
+        }
+ 
+        for (i = 0; i < array.Length; i++)
+        {
+            resultList[i].Add(array[i]);
+        }
+    }
+  
                         break;
                     case ConsoleKey.D2:
 
@@ -84,58 +106,7 @@ namespace _131_PE_Chighikova
             Console.ReadKey();
         }
 
-        static string ReadFile() //метод, чтение из файла
-        {
-            //FileStream file1 = new FileStream("Zarplata.txt", FileMode.Open);
-            //StreamReader reader = new StreamReader(file1, Encoding.Unicode);
-            string path = @"I:\Программная инженерия\131_PE_Chighikova\131_PE_Chighikova\bin\Debug\Zarplata.txt";
-
-            try
-            {
-                //Console.WriteLine("******считываем весь файл********");
-                //  using (StreamReader sr = new StreamReader(path))
-                //  {
-                //      Console.WriteLine(sr.ReadToEnd());
-                //  }
-
-                Console.WriteLine();
-                Console.WriteLine("******считываем построчно********");
-                using (StreamReader sr = new StreamReader(path, System.Text.Encoding.Default))
-                {
-                    string line;
-                    while ((line = sr.ReadLine()) != null)
-                    {
-                        Console.WriteLine(line.Split('|'));
-
-                    }
-
-
-
-
-
-                }
-                Console.WriteLine();
-            //    Console.WriteLine("******считываем блоками********");
-              //  using (StreamReader sr = new StreamReader(path, System.Text.Encoding.Default))
-              //  {
-               //     for (int i = 0; i < 8; i++)
-               //     {
-                 //       char[] array = new char[5];
-                //        // считываем 4 символа
-                 //       sr.Read(array, 0, 5);
-
-                   //     Console.WriteLine(array);
-                   // }
-               // }
-
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            return path;
-            //reader.ReadToEnd();
-        }
+       
     }
 }
 
